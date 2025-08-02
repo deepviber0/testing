@@ -6,7 +6,7 @@
   <title>User Panel – EV</title>
   <style>
     :root {
-      --sidebar-width: 260px;
+      --sidebar-width: 240px;/*240*/
       --bg-dark: #11192c;
       --accent: #4caf50;
     }
@@ -40,6 +40,7 @@
 
     #main {
       width: calc(100vw - var(--sidebar-width));
+    
     }
 
     #hamburger {
@@ -81,7 +82,8 @@
       border: 1px solid rgba(209, 213, 219, 0.3);
     }
 
-    @media (max-width: 768px) {
+  /* MOBILE LAYOUT**/
+    @media (min-width:268px) {
       body {
         display: block;
       }
@@ -129,14 +131,19 @@
   <iframe id="main" src="overview.html" name="main"></iframe>
 
   <script>
-    const iframe = document.getElementById("sidebar");
+
+       const iframe = document.getElementById("sidebar");
 
     function sendScreenWidth() {
       iframe.contentWindow.postMessage({ screenWidth: window.innerWidth }, "*");
     }
 
+    // Send when iframe loads
     iframe.onload = sendScreenWidth;
+
+    // Send again if screen resizes
     window.onresize = sendScreenWidth;
+    
 
     const sidebar = document.getElementById("sidebar");
     const hamburger = document.getElementById("hamburger");
